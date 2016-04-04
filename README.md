@@ -53,4 +53,8 @@ $> ansible-playbook \
     -i ./hosts playbook.yml
 ```
 
+```
+$> ansible-playbook -i ./hosts playbook.yml
+```
+
 [1]: http://docs.ansible.com/ansible/intro_getting_started.html

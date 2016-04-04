@@ -1,12 +1,28 @@
 ---
+- hosts: all
+  become: true
+  gather_facts: true
+
+  tasks:
+   - name: install httpd
+     yum: name=httpd state=latest update_cache=yes
+   - name: start httpd
+     service: name=httpd state=started
+
 - hosts: web01
   become: true
-  gather_facts: yes
+  gather_facts: true
+  serial: 1
+
+  tasks:
+   - name: hello web01
+     debug: msg="hello web01"
+
+- hosts: lb
+  become: true
+  gather_facts: true
+  serial: 1
 
   tasks:
    - name: update apt cache
-     yum: name=* state=latest
-   - name: install httpd
-     yum: name=httpd state=latest
-   - name: debug message
-     debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+     debug: msg="hello lb"
