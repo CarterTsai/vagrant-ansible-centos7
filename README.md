@@ -56,5 +56,25 @@ $> ansible-playbook \
 ```
 $> ansible-playbook -i ./hosts playbook.yml
 ```
+### Centos Firewalld
+http://shaurong.blogspot.tw/2014/07/centos-70-x64.html
+http://note.tc.edu.tw/932.html
+
+要暫時開放 http port，可執行
+```
+$> firewall-cmd --add-service=http
+```
+
+要永久開放 http port，可執行
+```
+$> firewall-cmd --permanent --add-service=http
+$> systemctl restart firewalld
+```
+
+查看此zone所開的服務
+```
+$> firewall-cmd --zone=public --list-all
+```
+
 
 [1]: http://docs.ansible.com/ansible/intro_getting_started.html

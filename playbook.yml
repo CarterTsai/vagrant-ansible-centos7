@@ -18,7 +18,7 @@
      service: name=firewalld state=restarted
 
 
-- hosts: web01
+- hosts: webservice
   become: true
   gather_facts: true
   serial: 1
