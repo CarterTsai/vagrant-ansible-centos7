@@ -8,6 +8,15 @@
      yum: name=httpd state=latest update_cache=yes
    - name: start httpd
      service: name=httpd state=started
+   - name: open port for service
+     firewalld: service={{item.name}} permanent={{item.permanent}} state={{item.state}}
+     with_items:
+         - {name: 'http' , permanent: true, state: 'enabled'}
+         - {name: 'https', permanent: true, state: 'enabled'}
+         - {name: 'ftp', permanent: true, state: 'enabled'}
+   - name: firewalld restart
+     service: name=firewalld state=restarted
+
 
 - hosts: web01
   become: true
